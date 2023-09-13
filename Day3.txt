@@ -1,0 +1,78 @@
+1.How to compare two JSON have the same properties without order?
+
+let obj1 = {name:"person1", age:5}
+let obj2 = {age:5 , name:"person1"}
+function compareobj(obj1, obj2){
+if(Object.keys(obj1).length !== Object.keys(obj2).length)
+{
+return false;
+   }
+   for(let key in obj1)
+    {
+        if(!obj2.hasOwnProperty(key) || obj1[key] !== obj2[key])
+        {
+ return false;
+        }
+}
+return true;
+}
+let result = compareobj(obj1, obj2);
+console.log(result);
+
+2. Use the rest countries api url and display all the country flag in console?
+
+// Create new XMLHttpRequest
+var xhr = new XMLHttpRequest();
+//to define method and url
+var method = "GET";
+var url = "https://restcountries.com/v3.1/all";
+//open the request
+xhr.open(method,url);
+xhr.onload = function(){
+    if(xhr.status === 200)
+    {
+        //console.log(xhr.responsetext);
+    
+    var countriesDetail = JSON.parse(xhr.responseText);
+    for ( i = 0; i< countriesDetail.length; i++)
+    {
+        console.log(countriesDetail[i].flags);
+		
+    }
+	}
+    else
+    {
+        console.log("request failed",xhr.status);
+    }
+}
+xhr.send();
+
+3.Use rest countries api url and print all countries names,regions,subregion and populations?
+
+// Create new XMLHttpRequest
+var xhr = new XMLHttpRequest();
+//to define method and url
+var method = "GET";
+var url = "https://restcountries.com/v3.1/all";
+//open the request
+xhr.open(method,url);
+xhr.onload = function(){
+    if(xhr.status === 200)
+    {
+        //console.log(xhr.responsetext);
+    
+    var countriesDetail = JSON.parse(xhr.responseText);
+    for ( i = 0; i< countriesDetail.length; i++)
+    {
+        console.log(countriesDetail[i].name);
+		console.log(countriesDetail[i].region);
+		console.log(countriesDetail[i].subregion);
+		console.log(countriesDetail[i].population);
+    }
+	}
+    else
+    {
+        console.log("request failed",xhr.status);
+    }
+}
+xhr.send();
